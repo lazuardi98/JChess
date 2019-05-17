@@ -8,18 +8,19 @@
 *.ctxt
 
 # IntelliJ IDEA
-.out
-.idea
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+out/
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
 # Package Files #
-*.jar
+# *.jar
 *.war
 *.nar
 *.ear
-*.zip
+# *.zip
 *.tar.gz
 *.rar
 
