@@ -5,7 +5,6 @@ import catur.Bidak;
 public class GerakanKhusus implements Gerakan
 {
     private GerakanNormal move1;
-
     private GerakanNormal move2;
 
     public GerakanKhusus(GerakanNormal move1, GerakanNormal move2) {

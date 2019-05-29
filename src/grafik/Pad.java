@@ -175,6 +175,5 @@ public class Pad extends Widget
             return Pad.this.maximumSize;
         }
     }
-
 }
 

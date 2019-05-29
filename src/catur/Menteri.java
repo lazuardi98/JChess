@@ -10,11 +10,8 @@ import static sistem.Tipe.*;
 public class Menteri implements Bidak
 {
     private Permainan permainan;
-
     private Warna color;
-
     private int x;
-
     private int y;
 
     public Menteri(Warna color, Permainan permainan, int x, int y) {
@@ -23,7 +20,6 @@ public class Menteri implements Bidak
         this.x = x;
         this.y = y;
     }
-
     
     public String imageString() {
         return this.color.abbrev() + "_" + MENTERI.abbrev();
@@ -144,7 +140,11 @@ public class Menteri implements Bidak
         if (this.permainan.inCheck(this.permainan.turn().opposite())) {
             this.permainan.undoMove();
             return false;
-        } else {
+        }
+        else {
+            if (!this.permainan.getMoved()){
+                this.permainan.undoMove();
+            }
             return true;
         }
     }

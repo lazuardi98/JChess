@@ -25,7 +25,8 @@ public class Engine implements ActionListener
             e.printStackTrace();
         }
         JFrame.setDefaultLookAndFeelDecorated(true);
-        Image img = (new ImageIcon("./img/icon/icon.jpg")).getImage();
+        java.net.URL url = getClass().getResource("/img/icon/icon.jpg");
+        Image img = (new ImageIcon(url)).getImage();
         this.frame = new JFrame(title);
         this.frame.setIconImage(img);
         this.frame.setLayout(new GridBagLayout());

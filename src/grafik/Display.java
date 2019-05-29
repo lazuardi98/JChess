@@ -15,14 +15,12 @@ import java.io.IOException;
 /** Melukis perubahan
  * pada GUI
  */
-public class Display extends Pad {
-
+public class Display extends Pad
+{
+    private final Permainan permainan;
     public static final double MULTIPLIER = 0.7; // 0.7
-
     public static final int PAPAN = (int) Math.round(700 * MULTIPLIER); // 700
-
     public static final int KOTAK = (int) Math.round(74 * MULTIPLIER); // 74
-
     public static final int MARGIN = (int) Math.round(53 * MULTIPLIER); // 53
 
     public Display(Permainan permainan) {
@@ -62,6 +60,17 @@ public class Display extends Pad {
             g.drawImage(getImage("pilihan.png", "papan"),
                 KOTAK * this.permainan.selectedX() + MARGIN,
                 KOTAK * this.permainan.selectedY() + MARGIN, KOTAK, KOTAK, null);
+            if (!this.permainan.getEnd()){
+                for (int x = 0; x < 8; x++) {
+                    for (int y = 0; y < 8; y++) {
+                        if (this.permainan.getPossibleGerakan(x, y)){
+                            g.drawImage(getImage("kemungkinan.png", "papan"),
+                                    KOTAK * x + MARGIN,
+                                    KOTAK * y + MARGIN, KOTAK, KOTAK, null);
+                        }
+                    }
+                }
+            }
         }
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -70,6 +79,4 @@ public class Display extends Pad {
             }
         }
     }
-
-    private final Permainan permainan;
 }

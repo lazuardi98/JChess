@@ -5,17 +5,11 @@ import catur.Bidak;
 public class GerakanNormal implements Gerakan
 {
     private Bidak selected;
-
     private Bidak target;
-
     private Bidak replace;
-
     private int x1;
-
     private int y1;
-
     private int x2;
-
     private int y2;
 
     public GerakanNormal(Bidak s, int x1, int y1, Bidak t, int x2, int y2) {
@@ -28,8 +22,7 @@ public class GerakanNormal implements Gerakan
         this.replace = null;
     }
 
-    private GerakanNormal(Bidak s, int x1, int y1, Bidak t,
-                          int x2, int y2, Bidak r) {
+    private GerakanNormal(Bidak s, int x1, int y1, Bidak t, int x2, int y2, Bidak r) {
         this.selected = s;
         this.x1 = x1;
         this.y1 = y1;

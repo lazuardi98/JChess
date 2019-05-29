@@ -10,11 +10,8 @@ import static sistem.Tipe.*;
 public class Kuda implements Bidak
 {
     private Permainan permainan;
-
     private Warna color;
-
     private int x;
-
     private int y;
 
     public Kuda(Warna color, Permainan permainan, int x, int y) {
@@ -81,7 +78,11 @@ public class Kuda implements Bidak
         if (this.permainan.inCheck(this.permainan.turn().opposite())) {
             this.permainan.undoMove();
             return false;
-        } else {
+        }
+        else {
+            if (!this.permainan.getMoved()){
+                this.permainan.undoMove();
+            }
             return true;
         }
     }

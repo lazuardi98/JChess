@@ -6,8 +6,8 @@ import sistem.Tipe;
 /** Interface untuk Bidak
  * Implementasi oleh kelas bidak lain
  */
-public interface Bidak {
-
+public interface Bidak
+{
     String imageString();
 
     Warna color();
@@ -21,5 +21,4 @@ public interface Bidak {
     boolean canCapture(int a, int b);
 
     void setLocation(int x, int y);
-
 }

@@ -4,8 +4,8 @@ import sistem.Permainan;
  * Build dan compile proyek dari program ini dengan IDE yang digunakan.
  * Jalankan method main agar permainan bisa dimulai.
  * @author JChess Team by Lazuardi, Adnan, Julius, dan Sandyka
- * @version 1.0
- * @since 17-Mei-2019
+ * @version 4.0
+ * @since 29-Mei-2019
  */
 public class Main
 {

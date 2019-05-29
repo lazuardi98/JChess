@@ -10,21 +10,17 @@ import static sistem.Tipe.*;
 public class Raja implements Bidak
 {
     private Permainan permainan;
-
     private Warna color;
-
     private int x;
-
     private int y;
-
-    private boolean _moved;
+    private boolean move;
 
     public Raja(Warna color, Permainan permainan, int x, int y) {
         this.color = color;
         this.permainan = permainan;
         this.x = x;
         this.y = y;
-        _moved = false;
+        this.move = false;
     }
 
     public String imageString() {
@@ -50,7 +46,7 @@ public class Raja implements Bidak
             && this.permainan.get(a + 1, b) != null && this.permainan.get(a + 1, b).type() == BENTENG
             && this.permainan.get(a + 1, b).color() == this.color && !this.permainan.inCheck(this.color)
             && !this.permainan.guarded(a - 1, b) && !this.permainan.guarded(a, b)
-            && !_moved && !((Benteng) this.permainan.get(a + 1, b)).moved()) {
+            && !this.move && !((Benteng) this.permainan.get(a + 1, b)).moved()) {
             GerakanNormal move1 = new GerakanNormal(this, this.x, this.y,
                 this.permainan.get(a, b), a, b);
             GerakanNormal move2 = new GerakanNormal(this.permainan.get(a + 1, b),
@@ -65,7 +61,7 @@ public class Raja implements Bidak
             && this.permainan.get(a - 2, b).color() == this.color
             && !this.permainan.inCheck(this.color)
             && !this.permainan.guarded(a - 1, b) && !this.permainan.guarded(a, b)
-            && !_moved && !((Benteng) this.permainan.get(a - 2, b)).moved()) {
+            && !this.move && !((Benteng) this.permainan.get(a - 2, b)).moved()) {
             GerakanNormal move1 = new GerakanNormal(this, this.x, this.y,
                 this.permainan.get(a, b), a, b);
             GerakanNormal move2 = new GerakanNormal(this.permainan.get(a - 2, b), a - 2,
@@ -76,7 +72,6 @@ public class Raja implements Bidak
             return false;
         }
     }
-
     
     public void setLocation(int x, int y) {
         this.x = x;
@@ -106,8 +101,14 @@ public class Raja implements Bidak
         if (this.permainan.inCheck(this.permainan.turn().opposite())) {
             this.permainan.undoMove();
             return false;
-        } else {
-            _moved = true;
+        }
+        else {
+            if (!this.permainan.getMoved()){
+                this.permainan.undoMove();
+            }
+            else {
+                this.move = true;
+            }
             return true;
         }
     }

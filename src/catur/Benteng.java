@@ -10,14 +10,10 @@ import static sistem.Tipe.*;
 public class Benteng implements Bidak
 {
     private Permainan permainan;
-
     private Warna color;
-
     private int x;
-
     private int y;
-
-    private boolean _moved;
+    private boolean move;
 
     public Benteng(Warna color, Permainan permainan, int x, int y) {
         this.color = color;
@@ -26,8 +22,7 @@ public class Benteng implements Bidak
         this.y = y;
     }
 
-    public String imageString() { return this.color.abbrev() + "_" + BENTENG.abbrev();
-    }
+    public String imageString() { return this.color.abbrev() + "_" + BENTENG.abbrev(); }
 
     public Warna color() {
         return this.color;
@@ -108,13 +103,19 @@ public class Benteng implements Bidak
         if (this.permainan.inCheck(this.permainan.turn().opposite())) {
             this.permainan.undoMove();
             return false;
-        } else {
-            _moved = true;
+        }
+        else {
+            if (!this.permainan.getMoved()){
+                this.permainan.undoMove();
+            }
+            else {
+                this.move = true;
+            }
             return true;
         }
     }
 
     public boolean moved() {
-        return _moved;
+        return this.move;
     }
 }

@@ -10,11 +10,8 @@ import static sistem.Tipe.*;
 public class Pion implements Bidak
 {
     private Permainan permainan;
-
     private Warna color;
-
     private int x;
-
     private int y;
 
     public Pion(Warna color, Permainan permainan, int x, int y) {
@@ -113,7 +110,6 @@ public class Pion implements Bidak
         }
     }
 
-    
     public boolean canCapture(int a, int b) {
         return (b == this.y + direction() && Math.abs(a - this.x) == 1);
     }
@@ -123,7 +119,11 @@ public class Pion implements Bidak
         if (this.permainan.inCheck(this.permainan.turn().opposite())) {
             this.permainan.undoMove();
             return false;
-        } else {
+        }
+        else {
+            if (!this.permainan.getMoved()){
+                this.permainan.undoMove();
+            }
             return true;
         }
     }

@@ -15,20 +15,16 @@ import static sistem.Warna.*;
 public class Permainan
 {
     private Bidak[][] papan;
-
     private GUI gui;
-
     private Warna giliran;
-
     private List<Gerakan> gerakan;
-
     private Raja hRj;
-
     private Raja pRj;
-
     private int selectedX;
-
     private int selectedY;
+    private boolean moved;
+    private boolean end;
+    private boolean[][] possibleGerakan;
 
     public Permainan() {
         this.gerakan = new ArrayList<Gerakan>();
@@ -38,8 +34,11 @@ public class Permainan
 
     public void newPermainan() {
         initializeBoard();
+        newPossibleMove();
         this.gerakan.clear();
         this.giliran = PUTIH;
+        moved = false;
+        end = false;
         selectedX = -1;
         selectedY = -1;
     }
@@ -110,6 +109,38 @@ public class Permainan
             }
         }
         return true;
+    }
+
+    private void newPossibleMove(){
+        boolean[][] newPossible = new boolean[8][8];
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                newPossible[x][y] = false;
+            }
+        }
+        possibleGerakan = newPossible;
+    }
+
+    public boolean getPossibleGerakan(int x, int y){
+        return possibleGerakan[x][y];
+    }
+
+    public void setPossibleGerakan(Bidak pilihanBidak){
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                if (x == selectedX() && y == selectedY()){
+                    possibleGerakan[x][y] = false;
+                }
+                else {
+                    if (pilihanBidak.makeValidMove(x, y)){
+                        possibleGerakan[x][y] = true;
+                    }
+                    else {
+                        possibleGerakan[x][y] = false;
+                    }
+                }
+            }
+        }
     }
 
     public boolean guarded(int x, int y) {
@@ -208,6 +239,22 @@ public class Permainan
 
     public int selectedY() {
         return selectedY;
+    }
+
+    public boolean getMoved(){
+        return moved;
+    }
+
+    public void setMoved(boolean value){
+        moved = value;
+    }
+
+    public boolean getEnd(){
+        return end;
+    }
+
+    public void setEnd(boolean value){
+        end = value;
     }
 
     public Bidak[][] board() {
